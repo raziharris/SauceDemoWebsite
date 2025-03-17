@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalVariableEntities>
+   <description></description>
+   <name>default</name>
+   <tag></tag>
+   <defaultProfile>true</defaultProfile>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(1, 1)</initValue>
+      <name>Username</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(2, 1)</initValue>
+      <name>Password</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(3, 1)</initValue>
+      <name>Bagpack</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(4, 1)</initValue>
+      <name>BikeLight</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(5, 1)</initValue>
+      <name>Tshirt</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(6, 1)</initValue>
+      <name>Jacket</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(7, 1)</initValue>
+      <name>Onesie</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>findTestData('DataFile').getValue(8, 1)</initValue>
+      <name>TshirtRed</name>
+   </GlobalVariableEntity>
+</GlobalVariableEntities>

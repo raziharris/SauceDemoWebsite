@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC V3</name>
+   <tag></tag>
+   <comment></comment>
+   <recordOption>OTHER</recordOption>
+   <testCaseGuid>357921b9-b74c-463e-9846-bc0165434b5e</testCaseGuid>
+   <testDataLinks>
+      <combinationType>ONE</combinationType>
+      <id>80b07a08-38c2-4792-9a73-a368f5bc4584</id>
+      <iterationEntity>
+         <iterationType>ALL</iterationType>
+         <value>1-1</value>
+      </iterationEntity>
+      <testDataId>Data Files/DataFile</testDataId>
+   </testDataLinks>
+</TestCaseEntity>
