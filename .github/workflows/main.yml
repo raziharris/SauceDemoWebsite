@@ -9,7 +9,8 @@ on:
       - main
 
 jobs:
-    runs-on: ubuntu-latest  # Use 'windows-latest' if running on Windows
+  run-katalon-tests:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
