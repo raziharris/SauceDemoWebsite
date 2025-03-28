@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  run-katalon-tests:  # Job name should be defined
+  run-katalon-tests:  # ✅ Correct indentation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
