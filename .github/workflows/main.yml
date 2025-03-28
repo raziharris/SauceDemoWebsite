@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  run-katalon-tests:
+  run-katalon-tests:  # Job name should be defined
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
