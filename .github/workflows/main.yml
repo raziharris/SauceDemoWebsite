@@ -33,7 +33,7 @@ jobs:
           mkdir katalon && tar -xzf katalon.tar.gz -C katalon --strip-components=1
           chmod +x katalon/katalonc
 
-      - name:Run Katalon Test Suite (Headless)
+      - name: Run Katalon Test Suite (Headless)
         run: |
           ./katalon/katalonc -noSplash -runMode=console \
             -projectPath="$(pwd)/Prektis/Prektis.prj" \
