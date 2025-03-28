@@ -1,0 +1,51 @@
+name: Run Katalon Test Suite (Headless)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use 'windows-latest' if running on Windows
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'  # Katalon requires Java 8 or later
+
+      - name: Install Chrome (for headless testing)
+        run: |
+          sudo apt update
+          sudo apt install -y google-chrome-stable
+
+      - name: Install Katalon Runtime Engine (KRE)
+        run: |
+          wget -O katalon.tar.gz https://download.katalon.com/10.1.1/Katalon_Studio_Engine_Linux_64-10.1.1.tar.gz
+          mkdir katalon && tar -xzf katalon.tar.gz -C katalon --strip-components=1
+          chmod +x katalon/katalonc
+
+      - name:Run Katalon Test Suite (Headless)
+        run: |
+          ./katalon/katalonc -noSplash -runMode=console \
+            -projectPath="$(pwd)/Prektis/Prektis.prj" \
+            -retry=0 \
+            -testSuitePath="Test Suites/V2 PASS" \
+            -browserType="Chrome (headless)" \
+            -apiKey=2136096c-4054-4784-aaec-416e2e15543f
+        env:
+          DISPLAY: :99  # Required for some GUI-based tests
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: katalon-reports
+          path: Prektis/Reports/
