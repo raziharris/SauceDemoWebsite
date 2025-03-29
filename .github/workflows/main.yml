@@ -9,8 +9,9 @@ on:
       - main
 
 jobs:
-  run-katalon-tests:  
+  run-katalon-tests:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -21,8 +22,12 @@ jobs:
           distribution: 'temurin'
           java-version: '11'  # Katalon requires Java 8 or later
 
-      - name: Install Chrome (for headless testing)
+      - name: Install Google Chrome (for headless testing)
         run: |
+          sudo apt update
+          sudo apt install -y wget
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt update
           sudo apt install -y google-chrome-stable
 
@@ -34,18 +39,18 @@ jobs:
 
       - name: Run Katalon Test Suite (Headless)
         run: |
-          ./katalon/katalonc -noSplash -runMode=console \
-            -projectPath="$(pwd)/Prektis/Prektis.prj" \
-            -retry=0 \
-            -testSuitePath="Test Suites/V2 PASS" \
-            -browserType="Chrome (headless)" \
-            -apiKey=2136096c-4054-4784-aaec-416e2e15543f
+          katalon/katalonc -noSplash \
+                           -runMode=console \
+                           -projectPath="$(pwd)/YourProjectPath" \
+                           -retry=0 \
+                           -testSuitePath="Test Suites/YourTestSuite" \
+                           -browserType="ChromeHeadless" \
+                           -apiKey=2136096c-4054-4784-aaec-416e2e15543f
         env:
-          DISPLAY: :99  # Required for some GUI-based tests
+          DISPLAY: :99  # Needed for some GUI-based tests
 
-    - name: Upload Test Reports
-      uses: actions/upload-artifact@v4
-      with:
-        name: katalon-reports
-        path: Prektis/Reports/
-
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: katalon-reports
+          path: YourProjectPath/Reports/  # Adjust to point to your reports directory
