@@ -29,7 +29,7 @@ jobs:
           wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt update
-          sudo apt install -y google-chrome-stable
+          sudo apt install -y google-chrome-stable xvfb  # Install Xvfb
 
       - name: Install Katalon Runtime Engine (KRE)
         run: |
@@ -37,17 +37,19 @@ jobs:
           mkdir katalon && tar -xzf katalon.tar.gz -C katalon --strip-components=1
           chmod +x katalon/katalonc
 
+      - name: Start Xvfb
+        run: |
+          Xvfb :99 -ac &  # Start Xvfb on display :99
+
       - name: Run Katalon Test Suite (Headless)
         run: |
-          katalon/katalonc -noSplash \
+          DISPLAY=:99 katalon/katalonc -noSplash \
                            -runMode=console \
                            -projectPath="$(pwd)/YourProjectPath" \
                            -retry=0 \
                            -testSuitePath="Test Suites/YourTestSuite" \
                            -browserType="ChromeHeadless" \
                            -apiKey=2136096c-4054-4784-aaec-416e2e15543f
-        env:
-          DISPLAY: :99  # Needed for some GUI-based tests
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4
