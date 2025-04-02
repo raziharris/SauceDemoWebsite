@@ -20,16 +20,16 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '11'  # Katalon requires Java 8 or later
+          java-version: '11'
 
-      - name: Install Google Chrome (for headless testing)
+      - name: Install Google Chrome and Xvfb
         run: |
           sudo apt update
           sudo apt install -y wget
           wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt update
-          sudo apt install -y google-chrome-stable xvfb  # Install Xvfb
+          sudo apt install -y google-chrome-stable xvfb
 
       - name: Install Katalon Runtime Engine (KRE)
         run: |
@@ -39,7 +39,7 @@ jobs:
 
       - name: Start Xvfb
         run: |
-          Xvfb :99 -ac &  # Start Xvfb on display :99
+          Xvfb :99 -ac &
 
       - name: Run Katalon Test Suite (Headless)
         run: |
@@ -55,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: katalon-reports
-          path: YourProjectPath/Reports/  # Adjust to point to your reports directory
+          path: YourProjectPath/Reports/
