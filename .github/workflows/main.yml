@@ -25,11 +25,12 @@ jobs:
       - name: Install Google Chrome and Xvfb
         run: |
           sudo apt update
-          sudo apt install -y wget libnss3 libxss1 libappindicator3-1 libasound2
+          sudo apt upgrade -y
+          sudo apt install -y wget libnss3 libxss1 libappindicator3-1 libasound2t64 xvfb
           wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
           sudo apt update
-          sudo apt install -y google-chrome-stable xvfb
+          sudo apt install -y google-chrome-stable
 
       - name: Install Katalon Runtime Engine (KRE)
         run: |
