@@ -42,16 +42,16 @@ jobs:
         run: |
           Xvfb :99 -ac &
 
-- name: Run Katalon Test Suite (Headless)
-  run: |
-    xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" katalon/katalonc -noSplash \
-      -runMode=console \
-      -projectPath="$(pwd)/YourProjectPath" \
-      -retry=0 \
-      -testSuitePath="Test Suites/YourTestSuite" \
-      -browserType="ChromeHeadless" \
-      -apiKey=2136096c-4054-4784-aaec-416e2e15543f \
-      -logLevel=DEBUG
+      - name: Run Katalon Test Suite (Headless)
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" katalon/katalonc -noSplash \
+          -runMode=console \
+          -projectPath="$(pwd)/YourProjectPath" \
+          -retry=0 \
+          -testSuitePath="Test Suites/YourTestSuite" \
+          -browserType="ChromeHeadless" \
+          -apiKey=2136096c-4054-4784-aaec-416e2e15543f \
+          -logLevel=DEBUG
 
 
 
